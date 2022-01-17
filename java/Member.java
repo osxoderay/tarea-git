@@ -8,16 +8,23 @@ public class Member {
     private int numMember;
     private String name;
     private String surnames;
+    private int cp;
 
-    public Member(String nif, int numMember, String name, String surnames) {
+    public Member(String nif, int numMember, String name, String surnames, int cp) {
         this.nif = nif;
         this.numMember = numMember;
         this.name = name;
         this.surnames = surnames;
+        this.cp = cp;
     }
 
+    public boolean isFrom(int cp) {
+        return this.cp == cp;
+    }
+
+
     public void info() {
-        System.out.println(name + " " + surnames + ". NIF: " + nif + ". Número socio: " + numMember);
+        System.out.println(name + " " + surnames + ". NIF: " + nif + ". Número socio: " + numMember + ". CP:" + cp);
     }
 
     public String getNif() {
@@ -52,17 +59,25 @@ public class Member {
         this.surnames = surnames;
     }
 
+    public int getCp() {
+        return cp;
+    }
+
+    public void setCp(int cp) {
+        this.cp = cp;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Member member = (Member) o;
-        return numMember == member.numMember && Objects.equals(nif, member.nif) && Objects.equals(name, member.name) && Objects.equals(surnames, member.surnames);
+        return numMember == member.numMember && cp == member.cp && Objects.equals(nif, member.nif) && Objects.equals(name, member.name) && Objects.equals(surnames, member.surnames);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(nif, numMember, name, surnames);
+        return Objects.hash(nif, numMember, name, surnames, cp);
     }
 
     @Override
@@ -72,6 +87,7 @@ public class Member {
                 ", numMember=" + numMember +
                 ", name='" + name + '\'' +
                 ", surnames='" + surnames + '\'' +
+                ", cp=" + cp +
                 '}';
     }
 
